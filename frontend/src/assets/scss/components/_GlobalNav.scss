@@ -1,0 +1,23 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  height: $s-navigation;
+  background-color: $color-primary;
+
+  &-logo {
+    @include button-constructor($color-primary);
+    height: 100%;
+  }
+}
+
+.navigation-button {
+  @include button-constructor($color-primary);
+  height: 100%;
+
+
+}
+
+.container--navigation {
+  display: flex;
+  height: 100%;
+}

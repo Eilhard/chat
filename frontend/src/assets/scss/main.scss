@@ -1,0 +1,17 @@
+@import './base/reset.scss';
+
+@import './abstracts/functions.scss'; /* Functions used in variables and mixins*/
+@import './abstracts/variables.scss';
+@import './abstracts/mixins.scss';
+
+@import './components/GlobalNav.scss';
+
+@import './plugins/materialize.min.css';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=cyrillic,cyrillic-ext');
+
+/* This container for root component Application.vue */
+.app-container {
+  min-height: 100vh;
+  background-color: $color-background;
+}

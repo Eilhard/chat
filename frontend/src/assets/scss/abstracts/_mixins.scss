@@ -1,0 +1,49 @@
+/* Components mixins */
+@mixin card-shadow {
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+/* Btn mixins */
+@mixin button-constructor ($color, $fcolor:#FFFFFF, $tone:shade, $pressed-color:#FFFFFF) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 $default-indent;
+  font-family: $ffamily-primary;
+  font-size: $fsize-button;
+  border: none;
+  outline: none;
+  color: $fcolor;
+  background-color: $color;
+  &::selection {
+    outline-color: $color-outline;
+  }
+  &:focus {
+    outline-color: $color-outline;
+  }
+  &:hover {
+    cursor: $cursor-hover;
+    @if $tone == "tint" {
+      background-color: tint($color, 20%);
+    } @else if $tone == "shade" {
+      background-color: shade($color, 20%);
+    }
+  }
+  &--pressed {
+    color: $pressed-color;
+  }
+}
+
+@mixin btn-hover-shade ($color) {
+  &:hover {
+    background-color: shade($color, 10%);
+    cursor: $cursor-hover;
+  }
+}
+
+@mixin btn-hover-tint ($color) {
+  &:hover {
+    background-color: tint($color, 50%);
+    cursor: $cursor-hover;
+  }
+}

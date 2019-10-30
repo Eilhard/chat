@@ -1,0 +1,17 @@
+/* Size */
+$default-indent: 10px;
+$s-navigation: 60px;
+
+/* Colors */
+$color-primary: #1B5E20;
+// $color-secondary: #BBDEFB;
+$color-assets: #FFCA28;
+$color-background: tint(#E8F5E9, 50%);
+$color-outline: shade($color-primary, 10%);
+
+/* Font */
+$ffamily-primary: ('Roboto', sans-serif);
+$fsize-button: 16px;
+
+/* Other */
+$cursor-hover: pointer;
