@@ -7,10 +7,7 @@
 
 <script>
   import axios from 'Plugins/axios.js';
-  import 'Plugins/fontawesome.min.js';
-  import 'Plugins/materialize/materialize.min.js';
   import GlobalNav from './components/GlobalNav.vue';
-
 
   export default {
     components: {

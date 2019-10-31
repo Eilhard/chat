@@ -1,4 +1,6 @@
 import './assets/scss/main.scss';
+import 'Plugins/fontawesome.min.js';
+import 'Plugins/materialize/materialize.min.js';
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';

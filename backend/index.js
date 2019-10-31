@@ -30,9 +30,26 @@ const io = socketIO(server)
 
 io.on('connection', socket => {
   console.log('User connected');
-  socket.on('newMessage', message => {
-    console.log(`New message ${message}`);
+
+  socket.on('message:create', (message, callback) => {
+  
+    try {
+      // Add to DB here
+      socket.broadcast.emit('message:new', message);
+      callback({
+        status: 201,
+        message: message
+      });
+    } catch (error) {
+      console.log(error); //  Logger
+      callback({
+        status: 500,
+        message: "Internal Server Error"
+      });
+    }
+
   });
+
 });
 
 server.listen(config.port, config.ip, () => {

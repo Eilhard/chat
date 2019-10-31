@@ -1,22 +1,24 @@
 <template lang="html">
-  <div class="container">
-    <div class="row">
-      <div class="input-field col s6">
-        <input :model="messageInput"  id="first_name2" type="text" class="validate">
-        <label class="active" for="first_name2">Message</label>
+  <div class="message-panel">
+    <form class="message-form">
+      <div class="input-field message-form__input-field">
+        <input v-model="messageInput" id="mI" type="text" class="message-form__message-box validate">
+        <label for="mI">Message</label>
       </div>
-      <div class="input-field col s6">
-        <button class="btn waves-effect waves-light btn-large" type="button">Submit
-          <i class="fas fa-paper-plane"></i>
-        </button>
-      </div>
-
-    </div>
+      <button
+        @click="send"
+        class="btn-floating waves-effect waves-light send-button"
+        type="button"
+        :disabled="messageInput.length < 1"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </form>
   </div>
 </template>
 
 <script>
-  
+
   export default {
     data() {
       return {
@@ -25,7 +27,8 @@
     },
     methods: {
       send() {
-
+        this.$store.dispatch('sendMessage', this.messageInput);
+        this.messageInput = "";
       }
     }
   }

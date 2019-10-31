@@ -1,0 +1,30 @@
+.message-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: $default-indent;
+}
+
+.message-card {
+  display: flex;
+  margin-bottom: $default-indent;
+  justify-content: flex-start;
+
+  &__body {
+    display: inline-flex;
+    border-radius: $border-radius;
+    padding: $default-indent/2 $default-indent;
+    font-size: $fsize-message;
+    max-width: 70vh;
+    background-color: #FFFFFF;
+
+    &--own {
+      color: #FFFFFF;
+      background-color: $color-secondary;
+    }
+  }
+
+  &--own {
+    justify-content: flex-end;
+  }
+}
