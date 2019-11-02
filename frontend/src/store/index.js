@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import io from 'Plugins/socket.io.js';
 const socket = io('http://localhost:18000');
-socket.on('confirmedMessage', message => { console.log(message); });
 
 Vue.use(Vuex);
 
@@ -11,7 +10,7 @@ export default new Vuex.Store({
 
   },
   state: {
-    messageRecipient: "Tom",
+    addressee: "Tom",
     messages: [],
     message: ""
   },

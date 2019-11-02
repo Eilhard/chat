@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
-
+/* Api route controllers */
+const user = require('../../controllers/api/user');
 
 router.get('', (req, res) => {
-  res.send("Hello chat");
-});
-router.get('/chat', (req, res) => {
-  res.send("Hello chat");
+  res.send("Hello user");
 });
 
 module.exports = router;

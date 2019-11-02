@@ -7,15 +7,13 @@ const userSchema = new Schema({
     type: Number,
     default: Date.now
   },
-  name: {
-    firstname: {
-      type: String,
-      default: "Unknown"
-    },
-    lastname: {
-      type: String,
-      default: "Wanderer"
-    }
+  firstname: {
+    type: String,
+    default: "Unknown"
+  },
+  lastname: {
+    type: String,
+    default: "Wanderer"
   },
   login: {
     type: String,
@@ -29,18 +27,21 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  friends: [
+  contacts: [
     {
-      friend: {
-        ref: 'friends',
+      user: {
+        ref: 'user',
         type: Schema.Types.ObjectId,
       },
-      messages: []
+      chat: {
+        ref: 'chat',
+        type: Schema.Types.ObjectId,
+      },
     }
   ],
   rooms: [
     {
-      ref: 'rooms',
+      ref: 'room',
       type: Schema.Types.ObjectId,
     }
   ],
@@ -49,4 +50,4 @@ const userSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('user', userSchema);

@@ -4,7 +4,8 @@ const http = require('http');
 const socketIO = require('socket.io');
 const path = require('path');
 const bodyParser = require('body-parser');
-const routes = require('./routes');
+const apiRoutes = require('./routes/api');
+const socketRoutes = require('./routes/socket');
 const config = require('./config.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,7 +17,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(routes);
+app.use(apiRoutes);
 
 app.use((err, req, res, next) => {
   if (err) {
@@ -28,29 +29,7 @@ app.use((err, req, res, next) => {
 const server = http.createServer(app)
 const io = socketIO(server)
 
-io.on('connection', socket => {
-  console.log('User connected');
-
-  socket.on('message:create', (message, callback) => {
-  
-    try {
-      // Add to DB here
-      socket.broadcast.emit('message:new', message);
-      callback({
-        status: 201,
-        message: message
-      });
-    } catch (error) {
-      console.log(error); //  Logger
-      callback({
-        status: 500,
-        message: "Internal Server Error"
-      });
-    }
-
-  });
-
-});
+io.on('connection', socketRoutes);
 
 server.listen(config.port, config.ip, () => {
   console.log(`Server running on port ${config.port}`);
