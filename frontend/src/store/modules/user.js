@@ -1,4 +1,4 @@
-import axios from '../../plugins/axios.js';
+import axios from 'Plugins/axios.js';
 
 export default {
   namespaced: true,
@@ -32,7 +32,7 @@ export default {
   actions: {
     getUser: async function(context) {
       try {
-        let response = await axios.get(`/users/`, { headers: { Authorization: `Bearer ${context.rootState.accessToken}` } });
+        let response = await axios.get(`/user/${context.state.id}`, { headers: { Authorization: `Bearer ${context.rootState.auth.accessToken}` } });
         context.commit('setFirstname', response.data.firstname);
         context.commit('setLastname', response.data.lastname);
         context.commit('setEmail', response.data.email);
@@ -43,11 +43,11 @@ export default {
     },
     updateUser: async function(context) {
       try {
-        let response = await axios.patch(`/users/me`, {
+        let response = await axios.patch(`/user/${context.state.id}`, {
             firstname: context.state.firstname,
             lastname: context.state.lastname,
           },
-          { headers: { Authorization: `Bearer ${context.rootState.accessToken}` }
+          { headers: { Authorization: `Bearer ${context.rootState.auth.accessToken}` }
         });
       } catch (error) {
         console.log(error);

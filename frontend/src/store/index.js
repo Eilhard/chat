@@ -3,13 +3,15 @@ import Vuex from 'vuex';
 import io from 'Plugins/socket.io.js';
 import auth from './modules/auth.js';
 import messages from './modules/messages.js';
+import user from './modules/user.js';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     auth,
-    messages
+    messages,
+    user
   },
   state: {
     socketUrl: 'http://localhost:18000',

@@ -50,6 +50,8 @@
 </template>
 
 <script>
+  import axios from 'Plugins/axios.js';
+
   export default {
     data() {
      return {
@@ -226,10 +228,8 @@
        let response;
        try {
          response = await axios.post('auth/register', {
-           name: {
-             firstname: firstname,
-             lastname: lastname,
-           },
+           firstname: firstname,
+           lastname: lastname,
            email: email,
            login: login,
            password: password

@@ -8,7 +8,7 @@
       <div class="chat__main--grow">
         <router-view></router-view>
       </div>
-      <MessagePanel />
+      <MessagePanel v-show="isChatRoom" />
     </div>
   </div>
 </template>
@@ -27,7 +27,10 @@
     computed: {
       sidebar() {
         return this.$store.state.sidebar;
-      }
+      },
+      isChatRoom() {
+        return /^\/chat\/.*/.test(this.$route.fullPath);
+      },
     },
     mounted() {
       this.$store.dispatch('connect');

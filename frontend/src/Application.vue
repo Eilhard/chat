@@ -14,7 +14,7 @@
       GlobalNav
     },
     mounted() {
-
+      this.$store.dispatch('auth/initialAuth');
     }
   }
 

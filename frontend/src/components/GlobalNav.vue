@@ -56,7 +56,7 @@
         this.$store.commit('switchSidebar');
       },
       logout() {
-        console.log("logout");
+        this.$store.dispatch('auth/logout');
       }
     }
   }

@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 
 /* DB */
 mongoose.connect(config.mongodb, {
+    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false

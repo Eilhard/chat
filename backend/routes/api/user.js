@@ -4,7 +4,6 @@ const guard = require('../../middleware/guard');
 /* Api route controllers */
 const user = require('../../controllers/api/user');
 
-router.use(guard.jwt);
 
 router.get('', (req, res) => { res.send("Hello user") });
 router.get('/search', user.search);
