@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const history = require('connect-history-api-fallback');
 
+app.use(history());
 app.use(express.static(path.join(__dirname, './public/')));
 
 let config = {

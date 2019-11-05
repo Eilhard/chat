@@ -2,10 +2,12 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const socketIO = require('socket.io');
+const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
 const apiRoutes = require('./routes/api');
 const socketRoutes = require('./routes/socket');
+const logger = require('./logger');
 const config = require('./config.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,14 +19,17 @@ app.use((req, res, next) => {
   next();
 });
 
+/* DB */
+mongoose.connect(config.mongodb, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  }).then(() => console.log('MongoDB connected.'))
+    .catch(error => console.log(error))
+
 app.use(apiRoutes);
 
-app.use((err, req, res, next) => {
-  if (err) {
-    res.status(500).send(err.message);
-  }
-  next()
-});
+app.use(logger.logErrorGlobal);
 
 const server = http.createServer(app)
 const io = socketIO(server)

@@ -79,6 +79,7 @@ module.exports = {
     host: 'localhost',
     port: 18002,
     contentBase: path.join(__dirname, 'public'),
+    historyApiFallback: true 
   },
   plugins: [
     new VueLoaderPlugin(),

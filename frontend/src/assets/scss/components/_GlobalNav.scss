@@ -2,11 +2,16 @@
   display: flex;
   align-items: center;
   height: $s-navigation;
+  color: $color-primary-opposite;
   background-color: $color-primary;
 
   &-logo {
     @include button-constructor($color-primary);
     height: 100%;
+  }
+  &__flat-btn {
+    font-size: $fsize-button;
+    color: $color-primary-opposite;
   }
 }
 
@@ -14,10 +19,4 @@
   @include button-constructor($color-primary);
   height: 100%;
 
-
-}
-
-.container--navigation {
-  display: flex;
-  height: 100%;
 }

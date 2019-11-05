@@ -1,9 +1,12 @@
 <template>
-  <nav class="navigation">
-    <div class="container container--navigation">
-      
-
-    </div>
+  <nav class="navigation px--2">
+    <button
+      v-show="isChat"
+      @click="sidebar"
+      class="btn-floating waves-effect waves-light btn-flat navigation__flat-btn "
+    >
+      <i class="fas fa-bars"></i>
+    </button>
   </nav>
 </template>
 
@@ -14,6 +17,16 @@
     data() {
       return {
 
+      }
+    },
+    computed: {
+      isChat() {
+        return this.$route.fullPath == '/chat';
+      }
+    },
+    methods: {
+      sidebar() {
+        this.$store.commit('switchSidebar');
       }
     }
   }

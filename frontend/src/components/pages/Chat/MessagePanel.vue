@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="message-panel">
-    <form class="message-form">
+    <form @keydown.enter.prevent="send" class="message-form">
       <div class="input-field message-form__input-field">
         <input v-model="messageInput" id="mI" type="text" class="message-form__message-box validate">
         <label for="mI">Message</label>
@@ -27,7 +27,7 @@
     },
     methods: {
       send() {
-        this.$store.dispatch('sendMessage', this.messageInput);
+        this.$store.dispatch('messages/sendMessage', this.messageInput);
         this.messageInput = "";
       }
     }

@@ -1,5 +1,9 @@
 import VueRouter from 'vue-router';
 import Chat from './components/pages/Chat/Chat.vue';
+import ChatIndex from './components/pages/ChatIndex/ChatIndex.vue';
+import ChatRoom from './components/pages/ChatRoom/ChatRoom.vue';
+import LostPage from './components/pages/LostPage.vue';
+import Login from './components/pages/Login/Login.vue';
 import store from 'Store';
 
 export default new VueRouter({
@@ -7,34 +11,49 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      component: Chat
+      redirect: to => {
+        if (store.state.auth) {
+          return '/chat';
+        }
+        return '/login';
+      }
     },
-    // {
-    //   path: '/relations',
-    //   component: User,
-    //   beforeEnter: function(to, from, next) {
-    //     if (store.state.auth) {
-    //       next();
-    //     }else{
-    //       next('/');
-    //     }
-    //   }
-    // },
-    // {
-    //   path: '/login',
-    //   component: Login,
-    //   beforeEnter: function(to, from, next) {
-    //     if (store.state.auth) {
-    //       next('/');
-    //     }else{
-    //       next();
-    //     }
-    //   }
-    // },
-    // {
-    //   path: '*',
-    //   component: LostPage
-    // }
+    {
+      path: '/chat',
+      component: Chat,
+      beforeEnter: function(to, from, next) {
+        if (store.state.auth) {
+          next();
+        }else{
+          next('/');
+        }
+      },
+      children: [
+        {
+          path: '',
+          component: ChatIndex
+        },
+        {
+          path: ':id',
+          component: ChatRoom
+        }
+      ]
+    },
+    {
+      path: '/login',
+      component: Login,
+      beforeEnter: function(to, from, next) {
+        if (store.state.auth) {
+          next('/');
+        }else{
+          next();
+        }
+      }
+    },
+    {
+      path: '*',
+      component: LostPage
+    }
   ],
   scrollBehavior (to, from, savedPosition) {
     if (to.hash) {

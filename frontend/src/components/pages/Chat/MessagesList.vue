@@ -21,13 +21,11 @@
     },
     computed: {
       messages() {
-        return this.$store.state.messages;
+        return this.$store.state.messages.messages;
       }
     },
     methods: {
-      send() {
-        this.$store.dispatch('test');
-      }
+    
     }
   }
 </script>

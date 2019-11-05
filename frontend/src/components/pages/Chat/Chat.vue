@@ -1,8 +1,10 @@
 <template lang="html">
   <div class="chat">
-    <FriendsList class="chat__aside" />
+    <FriendsList v-show="sidebar" class="chat__aside" />
     <div class="chat__main">
-      <MessagesList class="chat__main--grow" />
+      <div class="chat__main--grow">
+        <router-view></router-view>
+      </div>
       <MessagePanel />
     </div>
   </div>
@@ -19,8 +21,13 @@
       MessagesList,
       MessagePanel
     },
+    computed: {
+      sidebar() {
+        return this.$store.state.sidebar;
+      }
+    },
     mounted() {
-      this.$store.dispatch('listenMessages');
+      this.$store.dispatch('messages/listenMessages');
     }
   }
 </script>

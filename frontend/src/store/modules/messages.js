@@ -1,23 +1,13 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import io from 'Plugins/socket.io.js';
-const socket = io('http://localhost:18000');
-import messages from './modules/messages.js';
-
-Vue.use(Vuex);
-
-export default new Vuex.Store({
-  modules: {
-    messages
-  },
+export default {
+  namespaced: true,
   state: {
-    auth: true,
-    socket: socket,
-    sidebar: true
+    addressee: "",
+    messages: [],
+    message: ""
   },
   mutations: {
-    switchSidebar(state) {
-      state.sidebar = !state.sidebar;
+    addMessage(state, payload) {
+      state.messages.push(payload);
     }
   },
   getters: {
@@ -25,7 +15,7 @@ export default new Vuex.Store({
   },
   actions: {
     sendMessage(context, payload) {
-      socket.emit('message:create', payload, ({ status, message }) => {
+      context.rootState.socket.emit('message:create', payload, ({ status, message }) => {
         if (status === 201) {
           console.log("Our message recived", message); // Test
           context.commit('addMessage', {
@@ -38,7 +28,7 @@ export default new Vuex.Store({
       });
     },
     listenMessages(context) {
-      socket.on('message:new', message => {
+      context.rootState.socket.on('message:new', message => {
         console.log("New message recived", message); // Test
         context.commit('addMessage', {
           text: message,
@@ -47,4 +37,4 @@ export default new Vuex.Store({
       });
     }
   }
-});
+}
