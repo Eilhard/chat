@@ -1,7 +1,10 @@
 <template lang="html">
   <div class="chat">
     <FriendsList v-show="sidebar" class="chat__aside" />
-    <div class="chat__main">
+    <div
+      class="chat__main"
+      :class="{ 'chat__main--hide': sidebar }"
+    >
       <div class="chat__main--grow">
         <router-view></router-view>
       </div>
@@ -27,7 +30,7 @@
       }
     },
     mounted() {
-      this.$store.dispatch('messages/listenMessages');
+      this.$store.dispatch('connect');
     }
   }
 </script>

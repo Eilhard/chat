@@ -1,0 +1,40 @@
+.tabs-menu {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  box-sizing: border-box;
+  &--dark {
+    background-color: $bg-tabs;
+  }
+  &__tab {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    justify-content: center;
+    align-items: center;
+    min-height: $height-tabs;
+    padding: 0 $padding-tabs;
+    font-size: $fsize-input;
+    font-weight: 600;
+    color: shade($bg-input, 65%);
+    background-color: inherit;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    @include btn-hover-tint($bg-input);
+    &--active {
+      border-bottom: $tabs-underline solid $bg-input;
+      box-sizing: border-box;
+    }
+    &--dark {
+      color: $color-secondary;
+      @include btn-hover-shade($color-secondary);
+    }
+    &--active-dark {
+      color: shade($bg-input, 70%);
+      background-color: $color-secondary;
+    }
+  }
+}

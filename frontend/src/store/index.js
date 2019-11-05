@@ -1,29 +1,38 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import io from 'Plugins/socket.io.js';
-const socket = io('http://localhost:18000');
+import auth from './modules/auth.js';
 import messages from './modules/messages.js';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
+    auth,
     messages
   },
   state: {
-    auth: true,
-    socket: socket,
-    sidebar: true
+    socketUrl: 'http://localhost:18000',
+    socket: null,
+    sidebar: true,
   },
   mutations: {
     switchSidebar(state) {
       state.sidebar = !state.sidebar;
+    },
+    setSocket(state, socket) {
+      state.socket = socket;
     }
   },
   getters: {
 
   },
   actions: {
+    connect(context) {
+      const socket = io(context.state.socketUrl);
+      context.commit('setSocket', socket);
+      context.dispatch('messages/listenMessages');
+    },
     sendMessage(context, payload) {
       socket.emit('message:create', payload, ({ status, message }) => {
         if (status === 201) {

@@ -4,3 +4,39 @@
   width: 100%;
   border-right: 2px solid $color-secondary;
 }
+
+.friends-list-controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  &__btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border: none;
+    border-radius: 50%;
+    color: $color-primary;
+    background-color: inherit;
+  }
+}
+
+.friends-list-card {
+  display: inline-flex;
+  align-items: center;
+  padding: 15px;
+  font-family: $ffamily-primary;
+  font-weight: 500;
+  border: none;
+  background-color: inherit;
+  &:hover {
+    color: $color-primary-opposite;
+    background-color: tint($color-secondary, 30%);
+  }
+  &--active {
+    color: $color-primary-opposite;
+    background-color: tint($color-secondary, 30%);
+  }
+}

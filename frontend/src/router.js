@@ -12,7 +12,7 @@ export default new VueRouter({
     {
       path: '/',
       redirect: to => {
-        if (store.state.auth) {
+        if (store.state.auth.auth) {
           return '/chat';
         }
         return '/login';
@@ -22,7 +22,7 @@ export default new VueRouter({
       path: '/chat',
       component: Chat,
       beforeEnter: function(to, from, next) {
-        if (store.state.auth) {
+        if (store.state.auth.auth) {
           next();
         }else{
           next('/');
@@ -43,7 +43,7 @@ export default new VueRouter({
       path: '/login',
       component: Login,
       beforeEnter: function(to, from, next) {
-        if (store.state.auth) {
+        if (store.state.auth.auth) {
           next('/');
         }else{
           next();

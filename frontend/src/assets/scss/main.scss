@@ -5,9 +5,11 @@
 @import './abstracts/mixins.scss';
 
 @import './components/GlobalNav.scss';
+@import './components/Login.scss';
 @import './components/FriendsList.scss';
 @import './components/MessagePanel.scss';
 @import './components/MessagesList.scss';
+@import './components/tabs.scss';
 
 @import './layout/Chat.scss';
 @import './layout/simple.scss';

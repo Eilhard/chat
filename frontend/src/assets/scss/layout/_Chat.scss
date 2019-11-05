@@ -2,14 +2,22 @@
   display: flex;
   min-height: calc(100vh - #{$s-navigation});
   &__aside {
-    width: 200px;
+    width: 300px;
+    @include for-phone {
+      width: 100%;
+      border: none;
+    }
   }
   &__main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-
+    &--hide {
+      @include for-phone {
+        display: none;
+      }
+    }
     &--grow {
       flex-grow: 1;
     }
