@@ -17,11 +17,13 @@ const userSchema = new Schema({
   },
   login: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   password: {
     type: String,
@@ -34,15 +36,27 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
       },
       chat: {
-        ref: 'chat',
-        type: Schema.Types.ObjectId,
+        id: {
+          ref: 'chat',
+          type: Schema.Types.ObjectId,
+        },
+        lastReaded: {
+          type: Number,
+          default: 0
+        }
       },
     }
   ],
   rooms: [
     {
-      ref: 'room',
-      type: Schema.Types.ObjectId,
+      id: {
+        ref: 'room',
+        type: Schema.Types.ObjectId,
+      },
+      lastReaded: {
+        type: Number,
+        default: 0
+      }
     }
   ],
   refreshToken: {

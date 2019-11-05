@@ -4,8 +4,8 @@ module.exports = {
   mongodb: 'mongodb://127.0.0.1:27017/owls',
   jwt: {
     accessKey: 'societyof',
-    accessLive: 900,
+    accessLive: 10000,
     refreshKey: 'nightowls',
-    refreshLive: 3600
+    refreshLive: 86400
   },
 };

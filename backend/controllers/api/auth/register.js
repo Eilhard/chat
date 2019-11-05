@@ -22,28 +22,15 @@ module.exports = async function (req, res) {
     let salt = bcrypt.genSaltSync(10);
     password = bcrypt.hashSync(req.body.password, salt);
   }
-  /* Fix for nesting problem like handling undefined.isMaster */
-  let access = { isMaster: false, level: 0 };
-  if (req.body.access) {
-    if (req.body.access.isMaster) access.isMaster = req.body.access.isMaster;
-    if (req.body.access.level) access.level = req.body.access.level;
-  }
-  /* Check for admin key when create new admin. */
-  if (access.isMaster && (req.body.masterKey != config.masterKey) ) {
-    res.status(401).send("Your master key is wrong");
-    return
-  }
+
   /* Create new user */
   try {
     user = await new User({
-      name: {
-        firstname: req.body.name.firstname,
-        lastname: req.body.name.lastname,
-      },
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
       login: req.body.login,
       email: req.body.email,
-      password: password,
-      access: { isMaster: access.isMaster, level: access.level }
+      password: password
     }).save();
     res.status(201).send(`New user created`);
   } catch (error) {

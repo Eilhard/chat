@@ -6,7 +6,7 @@ const guard = require('../../middleware/guard');
 
 router.use('/api/auth', auth);
 
-router.use(guard.jwt);
+
 router.use('/api/user', user);
 
 module.exports = router;

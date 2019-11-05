@@ -20,8 +20,6 @@ module.exports = async function (req, res) {
       {
         id: user._id,
         login: user.login,
-        isMaster: user.access.isMaster,
-        accessLevel: user.access.level
       },
       config.jwt.accessKey,
       { expiresIn: config.jwt.accessLive }
