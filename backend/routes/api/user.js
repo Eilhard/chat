@@ -5,12 +5,11 @@ const guard = require('../../middleware/guard');
 const user = require('../../controllers/api/user');
 
 
-router.get('', (req, res) => { res.send("Hello user") });
-router.get('/search', user.search);
+router.get('/search', guard.jwt, user.search);
+router.get('/:id', guard.jwt, user.getById);
 
 /* Routes for use only with your own account  */
-router.get('/:id', guard.user, user.getById);
-router.patch('/:id', guard.user, user.getById);
-router.delete('/:id', guard.user, user.getById);
+router.patch('/:id', guard.user, user.update);
+router.delete('/:id', guard.user, user.delete);
 
 module.exports = router;

@@ -1,21 +1,23 @@
 @import './base/reset.scss';
 
+@import './plugins/materialize.min.css';
+
 @import './abstracts/functions.scss'; /* Functions used in variables and mixins*/
 @import './abstracts/variables.scss';
 @import './abstracts/mixins.scss';
 
 @import './components/GlobalNav.scss';
 @import './components/Login.scss';
-@import './components/FriendsList.scss';
+@import './components/SideMenu.scss';
+@import './components/ContactsSearch.scss';
 @import './components/MessagePanel.scss';
 @import './components/MessagesList.scss';
+@import './components/input.scss';
 @import './components/tabs.scss';
 
 @import './layout/Chat.scss';
 @import './layout/simple.scss';
 @import './layout/spacing.scss';
-
-@import './plugins/materialize.min.css';
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=cyrillic,cyrillic-ext');
 

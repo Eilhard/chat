@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="chat">
-    <FriendsList v-show="sidebar" class="chat__aside" />
+    <SideMenu v-show="sidebar" class="chat__aside" />
     <div
       class="chat__main"
       :class="{ 'chat__main--hide': sidebar }"
@@ -14,14 +14,12 @@
 </template>
 
 <script>
-  import FriendsList from './FriendsList.vue';
-  import MessagesList from './MessagesList.vue';
+  import SideMenu from './SideMenu.vue';
   import MessagePanel from './MessagePanel.vue';
 
   export default {
     components: {
-      FriendsList,
-      MessagesList,
+      SideMenu,
       MessagePanel
     },
     computed: {
@@ -33,7 +31,6 @@
       },
     },
     mounted() {
-      this.$store.dispatch('connect');
     }
   }
 </script>

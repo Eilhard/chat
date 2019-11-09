@@ -13,7 +13,7 @@ module.exports = async function (req, res) {
     {_id: req.user.id},
     {$set: updated},
     {new: true}
-  );
+    );
     res.status(200).send(user);
   } catch (error) {
     logger.logError('Controller | user.update', error);

@@ -27,7 +27,7 @@
     },
     methods: {
       send() {
-        this.$store.dispatch('messages/sendMessage', this.messageInput);
+        this.$store.dispatch('conversations/sendMessage', this.messageInput);
         this.messageInput = "";
       }
     }

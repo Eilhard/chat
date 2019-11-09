@@ -1,11 +1,11 @@
-.friends-list {
+.side-menu {
   display: flex;
   flex-direction: column;
   width: 100%;
   border-right: 2px solid $color-secondary;
 }
 
-.friends-list-controls {
+.side-menu-controls {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -20,18 +20,24 @@
     border-radius: 50%;
     color: $color-primary;
     background-color: inherit;
+    &--list-item {
+      width: 30px;
+      height: 30px;
+      margin: 0;
+    }
   }
 }
 
-.friends-list-card {
+.contact-card {
   display: inline-flex;
   align-items: center;
+  min-height: 60px;
   padding: 15px;
   font-family: $ffamily-primary;
   font-weight: 500;
   border: none;
   background-color: inherit;
-  &:hover {
+  &--hover:hover {
     color: $color-primary-opposite;
     background-color: tint($color-secondary, 30%);
   }

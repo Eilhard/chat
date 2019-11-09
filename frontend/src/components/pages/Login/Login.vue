@@ -29,7 +29,6 @@
 
      >
        <input
-         class="input-group__text-input"
          :type="item.type"
          :id="item.id"
          v-model="item.state"
@@ -191,7 +190,6 @@
        });
        if (response.status == 201) {
          this.$store.dispatch('auth/checkAuth');
-         this.$router.push('/');
        }
      },
      register: async function() {

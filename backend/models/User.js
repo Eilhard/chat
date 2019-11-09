@@ -7,6 +7,7 @@ const userSchema = new Schema({
     type: Number,
     default: Date.now
   },
+  socketId: String,
   firstname: {
     type: String,
     default: "Unknown"
@@ -29,6 +30,12 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  contactRequests: [
+    {
+      addressee:  String,
+      author: String
+    }
+  ],
   contacts: [
     {
       user: {
@@ -59,9 +66,7 @@ const userSchema = new Schema({
       }
     }
   ],
-  refreshToken: {
-    type: String
-  }
+  refreshToken: String
 });
 
 module.exports = mongoose.model('user', userSchema);

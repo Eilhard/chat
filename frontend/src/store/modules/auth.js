@@ -74,9 +74,9 @@ export default {
       let exp = context.state.accessExpiration - Date.now() / 1000;
       if (context.state.accessToken && exp > context.state.expirationTimeLimit) {
         context.commit('setAuth', true);
-        context.dispatch('user/getUser', {}, {root:true});
-        if (router.currentRoute.fullPath == '/login') {
-          router.push('/');
+        context.dispatch('user/setUserConn', {}, {root:true});
+        if (router.currentRoute.fullPath === '/login') {
+           router.push('/');
         }
       } else {
         context.commit('setAuth', false);

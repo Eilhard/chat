@@ -13,6 +13,7 @@ $color-outline: shade($color-primary, 10%);
 
 /* Font */
 $ffamily-primary: ('Roboto', sans-serif);
+
 $fsize-message: 20px;
 $fsize-button: 16px;
 $fsize-input: 16px;
@@ -27,3 +28,4 @@ $bg-input: tint($color-secondary, 20%);
 $tabs-underline: 3px;
 $height-tabs: 60px;
 $padding-tabs: 10px;
+$input-padding: 7px;
