@@ -15,14 +15,23 @@ const logger = require('../../../logger/index.js');
  */
 
 module.exports = (socket) => async function(message, callback) {
+  let newMessage = {
+    addressee: message.addressee,
+    author: message.author,
+    text: message.text,
+  }
   try {
-    let user = await User.findOne({_id: message.login});
+    let addressee = await User.findOne({_id: message.addressee});
     let chat = await Chat.findOneAndUpdate(
-    {_id: message.chat},
-    {$push: { messages: message }},
-    {new: true}
+      {_id: message.chat},
+      {$push: { messages: newMessage }},
+      {new: true}
     );
-    socket.broadcast.emit('message:new', message);
+    if (!message.isPersonal) {
+
+    }
+    if (addressee.socketId) socket.to(addressee.socketId).emit('message:create:notify', message);
+
     callback({
       status: 201,
       message: message

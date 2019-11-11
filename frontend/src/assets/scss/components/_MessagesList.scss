@@ -2,7 +2,11 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-height: calc(100vh - #{$s-navigation} - #{$s-message-panel});
+  overflow: auto;
+  overflow-x: hidden;
   padding: $default-indent;
+  box-sizing: border-box;
 }
 
 .message-card {
@@ -10,8 +14,10 @@
   margin-bottom: $default-indent;
   justify-content: flex-start;
 
+
   &__body {
     display: inline-flex;
+    flex-direction: column;
     border-radius: $border-radius;
     padding: $default-indent/2 $default-indent;
     font-size: $fsize-message;
@@ -26,5 +32,35 @@
 
   &--own {
     justify-content: flex-end;
+  }
+}
+
+.message-card-header {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 5px;
+
+  &__title {
+    font-style: italic;
+    font-weight: 500;
+    font-size: $fsize-message - 4px;
+
+
+    color: $color-primary;
+  }
+
+  &__controls {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    font-size: $fsize-message / 2;
+    border: none;
+    border-radius: 50%;
+    color: $color-primary;
+    background-color: inherit;
   }
 }

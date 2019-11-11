@@ -3,8 +3,10 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: $s-message-panel;
   border-top: 2px solid $color-secondary;
   background-color: #FFFFFF;
+  box-sizing: border-box;
 }
 
 .message-form {

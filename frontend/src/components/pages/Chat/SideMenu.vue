@@ -43,9 +43,10 @@
       :class="{ 'contact-card--hover': modeName == 'contacts' }"
       active-class="friends-list-card--active"
     >
+
       {{contact.fullname}}
       <div class="spacer"></div>
-      <span class="new badge">4</span>
+      <span v-if="unreadMessages[contact.user]" class="new badge">{{unreadMessages[contact.user]}}</span>
     </router-link>
   </div>
 </template>
@@ -72,6 +73,9 @@
       },
       contactRequests() {
         return this.$store.state.user.contactRequests;
+      },
+      unreadMessages() {
+        return this.$store.getters['conversations/unreadMessages'];
       }
     },
     methods: {

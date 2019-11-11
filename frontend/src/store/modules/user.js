@@ -48,7 +48,9 @@ export default {
     }
   },
   getters: {
-
+    userFullName(state) {
+      return `${state.firstname} ${state.lastname}`;
+    }
   },
   actions: {
     setUserConn: async function(context) {

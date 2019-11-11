@@ -11,7 +11,6 @@ module.exports = (socket) => async function(connectedUser) {
     {$set: updated},
     {new: true}
     );
-    console.log('Connected', user.login);
   } catch (error) {
     logger.logError('Controller | user.connect', error);
   }

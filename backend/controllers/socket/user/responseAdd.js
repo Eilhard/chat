@@ -22,7 +22,6 @@ module.exports = (socket) => async function(response) {
     /* If response positive create new chat and add it to db. */
     if (response.status) {
       let chat = await new Chat({ users: [ response.addressee, response.author ]}).save();
-      console.log("test", chat);
       let author = await User.findOneAndUpdate(
         {_id: response.author},
         { $push:
@@ -47,10 +46,7 @@ module.exports = (socket) => async function(response) {
         },
         {new: true}
       );
-      response.chat = {
-        id: chat._id,
-        lastReaded: 0
-      };
+      response.chat = chat;
       socket.to(addressee.socketId).emit('user:add:result', response);
       socket.emit('user:add:result', response);
     } else {

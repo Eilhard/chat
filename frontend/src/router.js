@@ -4,6 +4,7 @@ import ChatIndex from './components/pages/ChatIndex/ChatIndex.vue';
 import ChatRoom from './components/pages/ChatRoom/ChatRoom.vue';
 import LostPage from './components/pages/LostPage.vue';
 import Login from './components/pages/Login/Login.vue';
+import Stats from './components/pages/Stats/Stats.vue';
 import store from 'Store';
 
 export default new VueRouter({
@@ -40,6 +41,17 @@ export default new VueRouter({
       ]
     },
     {
+      path: '/stats',
+      component: Stats,
+      beforeEnter: function(to, from, next) {
+        if (store.state.auth.auth) {
+          next();
+        }else{
+          next('/');
+        }
+      }
+    },
+    {
       path: '/login',
       component: Login,
       beforeEnter: function(to, from, next) {
@@ -54,12 +66,5 @@ export default new VueRouter({
       path: '*',
       component: LostPage
     }
-  ],
-  scrollBehavior (to, from, savedPosition) {
-    if (to.hash) {
-      return { selector: to.hash }
-    } else {
-      return { x: 0, y: 0 }
-    }
-  }
+  ]
 })

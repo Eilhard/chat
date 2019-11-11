@@ -52,9 +52,10 @@ export default new Vuex.Store({
       context.dispatch('listen');
     },
     listen(context) {
-      context.state.socket.on('message:new', message => {
-        console.log("New message recived", message); // Test
-        message.isOwner = true;
+      context.state.socket.on('message:create:notify', async message => {
+        /* getContactUserNameLocal returns Promise */
+        message.fullname = await context.dispatch('conversations/getContactUserNameLocal', message.author);
+        message.isOwner = false;
         context.commit('conversations/addMessage', message);
       });
 
@@ -64,13 +65,20 @@ export default new Vuex.Store({
       });
 
       context.state.socket.on('user:add:result', async response => {
-        let contact = { chat: response.chat };
+        context.commit('conversations/addChat', response.chat);
+        let contact = {
+          chat: {
+            id: response.chat._id,
+            lastReaded: 0
+          }
+        };
         if (response.author == context.state.user.id) {
           contact.user = response.addressee;
         } else {
           contact.user = response.author;
         }
         contact.fullname = await context.dispatch('conversations/getContactUserName', contact.user);
+        console.log(contact);
         context.commit('conversations/addContact', contact);
       });
 

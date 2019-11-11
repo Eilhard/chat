@@ -1,0 +1,8 @@
+.stats {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - #{$s-navigation});
+  padding: $default-indent;
+  overflow: auto;
+  box-sizing: border-box;
+}

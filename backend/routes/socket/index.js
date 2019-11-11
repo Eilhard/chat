@@ -11,7 +11,7 @@ module.exports = socket => {
 
   socket.on('disconnect', disconnect);
   /* Socket routes */
-  socket.on('message:create', create);
+  socket.on('message:create:request', create);
   socket.on('user:add:request', requestAdd);
   socket.on('user:add:response', responseAdd);
   socket.on('user:delete:contact', deleteContact);
