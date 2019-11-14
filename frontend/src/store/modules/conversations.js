@@ -11,7 +11,6 @@ export default {
   mutations: {
     addChat(state, chat) {
       state.chat.push(chat);
-      console.log(state.chat);
     },
     setChat(state, payload) {
       state.chat = payload;
@@ -31,7 +30,6 @@ export default {
     },
     addContact(state, contact) {
       state.contacts.push(contact);
-      console.log(state);
     },
     deleteContact(state, deletedId) {
       state.contacts = state.contacts.filter(item => item.user != deletedId);

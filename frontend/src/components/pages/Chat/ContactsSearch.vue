@@ -47,7 +47,12 @@
       },
       requestAdd(userId) {
         this.$store.dispatch('user/requestAdd', userId);
-      }
+        this.searchInput = "";
+        this.backToContacts();
+      },
+      backToContacts() {
+        this.$emit('modeChangeDefault');
+      },
     }
   }
 </script>

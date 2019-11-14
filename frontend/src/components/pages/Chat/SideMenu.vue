@@ -25,7 +25,10 @@
       </button>
     </div>
 
-    <ContactsSearch v-show="modeName == 'search'"/>
+    <ContactsSearch
+      v-show="modeName == 'search'"
+      @modeChangeDefault="switchMode('contacts')"
+    />
     <DeleteMenu v-show="modeName == 'delete'"/>
     <Notifications
       v-show="modeName == 'notifications'"

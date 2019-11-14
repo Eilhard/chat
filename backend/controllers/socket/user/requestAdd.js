@@ -14,7 +14,18 @@ module.exports = (socket) => async function(request) {
       addressee: request.addressee,
       author: request.author
     };
-    let addressee = await User.findOneAndUpdate(
+    /* Check for unic req */
+    let addressee = await User.findOne({_id: request.addressee});
+    let isNewRequest = true;
+    addressee.contactRequests.forEach(item => {
+      if (item.author == request.author) isNewRequest = false;
+    });
+    if (!isNewRequest) {
+      socket.emit('server:error', { status: 400, message: "Dublicate request" })
+      return;
+    }
+    /* Add req */
+    addressee = await User.findOneAndUpdate(
       {_id: request.addressee},
       {$push: { contactRequests: newRequest }},
       {new: true}
