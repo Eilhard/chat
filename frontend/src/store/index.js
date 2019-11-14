@@ -4,6 +4,7 @@ import io from 'Plugins/socket.io.js';
 import auth from './modules/auth.js';
 import conversations from './modules/conversations.js';
 import message from './modules/message.js';
+import stats from './modules/stats.js';
 import user from './modules/user.js';
 
 Vue.use(Vuex);
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     auth,
     message,
     conversations,
+    stats,
     user
   },
   state: {
@@ -50,6 +52,8 @@ export default new Vuex.Store({
       context.commit('setSocket', socket);
       context.commit('user/setSocketId', socket.id);
       context.dispatch('listen');
+      /* Activate stats system */
+      context.dispatch('stats/initialStats');
     },
     listen(context) {
       context.state.socket.on('message:create:notify', async message => {
@@ -78,7 +82,6 @@ export default new Vuex.Store({
           contact.user = response.author;
         }
         contact.fullname = await context.dispatch('conversations/getContactUserName', contact.user);
-        console.log(contact);
         context.commit('conversations/addContact', contact);
       });
 
@@ -88,6 +91,21 @@ export default new Vuex.Store({
 
       context.state.socket.on('server:error', error => {
         console.log(error);
+      });
+
+      context.state.socket.on('stats:new:node', node => {
+        context.commit('stats/addNode', node)
+      });
+      context.state.socket.on('stats:new:link', link => {
+        context.commit('stats/addLink', link)
+      });
+
+      context.state.socket.on('stats:delete:link', link => {
+        context.commit('stats/deleteLink', link)
+      });
+
+      context.state.socket.on('stats:new:message', message => {
+        context.commit('stats/addMessage', message);
       });
     }
   }

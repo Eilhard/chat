@@ -17,6 +17,7 @@ module.exports = (socket) => async function(request) {
       {new: true}
     );
     socket.to(addressee.socketId).emit('user:delete:contact:notify', request);
+    global._io.emit('stats:delete:link', { source: author._id, target: addressee._id });
   } catch (error) {
     logger.logError('Controller | user.requestAdd', error);
   }

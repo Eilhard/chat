@@ -32,6 +32,8 @@ module.exports = async function (req, res) {
       email: req.body.email,
       password: password
     }).save();
+
+    global._io.emit('stats:new:node', { id: user._id, firstname: user.firstname });
     res.status(201).send(`New user created`);
   } catch (error) {
     logger.logError('Controller | auth.register', error);

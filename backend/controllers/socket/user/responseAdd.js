@@ -49,6 +49,8 @@ module.exports = (socket) => async function(response) {
       response.chat = chat;
       socket.to(addressee.socketId).emit('user:add:result', response);
       socket.emit('user:add:result', response);
+
+      global._io.emit('stats:new:link', { source: author._id, target: addressee._id });
     } else {
       let addressee = await User.findOne({_id: response.addressee});
       socket.to(addressee.socketId).emit('user:add:result', response);

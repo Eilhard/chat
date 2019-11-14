@@ -34,7 +34,8 @@ app.use(logger.logErrorGlobal);
 
 const server = http.createServer(app)
 const io = socketIO(server)
-
+global._io = io;
+console.log(global);
 io.on('connection', socketRoutes);
 
 server.listen(config.port, config.ip, () => {

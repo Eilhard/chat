@@ -79,7 +79,7 @@ module.exports = {
     host: 'localhost',
     port: 18002,
     contentBase: path.join(__dirname, 'public'),
-    historyApiFallback: true 
+    historyApiFallback: true
   },
   plugins: [
     new VueLoaderPlugin(),
@@ -92,7 +92,8 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       Plugins: path.resolve(__dirname, './src/plugins/'),
       Assets: path.resolve(__dirname, './src/assets/'),
-      Store: path.resolve(__dirname, './src/store/index.js')
+      Store: path.resolve(__dirname, './src/store/index.js'),
+      Components: path.resolve(__dirname, './src/components/')
     }
   }
 };

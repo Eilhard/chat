@@ -6,3 +6,22 @@
   overflow: auto;
   box-sizing: border-box;
 }
+
+.sim {
+  &-node {
+    fill: $color-secondary;
+    stroke: $color-primary;
+    stroke-width: 1px;
+  }
+  &-link {
+    stroke: $color-primary;
+    stroke-width: 1px;
+  }
+  &-label {
+    font-size: 10px;
+    fill: shade($color-primary, 50%);
+  }
+  &-message {
+    fill: #90EE90;
+  }
+}

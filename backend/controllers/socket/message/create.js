@@ -27,9 +27,7 @@ module.exports = (socket) => async function(message, callback) {
       {$push: { messages: newMessage }},
       {new: true}
     );
-    if (!message.isPersonal) {
-
-    }
+    global._io.emit('stats:new:message', { source: message.author, target: message.addressee });
     if (addressee.socketId) socket.to(addressee.socketId).emit('message:create:notify', message);
 
     callback({

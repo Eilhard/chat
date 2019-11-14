@@ -1,0 +1,40 @@
+.loader-window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  width: 64px;
+  min-height: 64px;
+}
+.loader-item {
+  display: inline-flex;
+  width: 13px;
+  margin: 3px;
+  background: $color-primary;
+  animation: loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.loader-item--1 {
+  animation-delay: -0.24s;
+}
+.loader-item--2 {
+  animation-delay: -0.12s;
+}
+.loader-item--3 {
+  animation-delay: 0;
+}
+@keyframes loader {
+  0% {
+    top: 6px;
+    height: 51px;
+  }
+  50%, 100% {
+    top: 19px;
+    height: 26px;
+  }
+}

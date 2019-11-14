@@ -20,9 +20,7 @@
           <i class="fas fa-pen"></i>
         </button> -->
       </div>
-
-
-      <p>{{message.text}}</p>
+      <p class="message-card-text">{{message.text}}</p>
     </div>
   </div>
 </template>
